@@ -1,0 +1,14 @@
+{
+  "name": "hastdueier-twitter-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:josa42/hastdueier-twitter-bot.git",
+  "author": "Josa Gesell <josa@gesell.me>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "html-entities": "^1.2.0",
+    "request-promise-native": "^1.0.3",
+    "twitter": "^1.7.0"
+  }
+}
