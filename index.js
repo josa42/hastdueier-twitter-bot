@@ -1,7 +1,6 @@
 const Twitter = require('twitter')
 const request = require('request-promise-native')
-const { XmlEntities } = require('html-entities')
-const entities = new XmlEntities();
+const entities = require('entities')
 
 var client = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -24,12 +23,9 @@ client.stream('statuses/filter', {track: '#hastdueier'}, function(stream) {
       status: tweet.status
     }, null, '  '))
 
-    let answer = await request('http://localhost:8000/api/answer.php')
-    if (typeof answer === 'string') {
-      answer = JSON.parse(answer)
-    }
+    let answer = await request('http://localhost:8000/api/answer.php', { json: true })
 
-    const reply = `@${tweet.user.screen_name} ${entities.decode(answer.title)} ${answer.description || ''} ${answer.mediaUrl || ''} https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
+    const reply = `@${tweet.user.screen_name} ${entities.decodeHTML(answer.title)} ${answer.description || ''} ${answer.mediaUrl || ''} https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
 
     console.log(`> ${reply}`)
 

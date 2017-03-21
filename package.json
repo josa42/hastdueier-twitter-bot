@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "html-entities": "^1.2.0",
+    "entities": "^1.1.1",
     "request-promise-native": "^1.0.3",
     "twitter": "^1.7.0"
   }
